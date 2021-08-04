@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import ReactFlow, { ReactFlowProvider } from "react-flow-renderer";
+import ReactFlow, { addEdge, ReactFlowProvider } from "react-flow-renderer";
 import { IFrame } from "./Iframe";
 import { onDragStopHandler, uniqueBy } from "./utils";
 
-export default function NestedFlow({ id, elements, onNodeDragStop, moveUp }) {
+export default function NestedFlow({ id, elements }) {
   const [children, setChildren] = useState([]);
+
+  const onConnect = (params) => setChildren((els) => addEdge(params, els));
+
   const frameId = "iframe-" + id;
   useEffect(
     function () {
@@ -22,6 +25,7 @@ export default function NestedFlow({ id, elements, onNodeDragStop, moveUp }) {
           <ReactFlowProvider>
             <ReactFlow
               elements={children}
+              onConnect={onConnect}
               onNodeDragStop={(event, node) => {
                 onDragStopHandler({
                   node,

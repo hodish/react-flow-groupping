@@ -7,7 +7,8 @@ export function uniqueBy(by, data) {
 export function removeUpHandler({ node, elements }) {
   return elements.filter((el) => el.id !== node.id);
 }
-export function intersectionHandler({ intersected, node, elements }) {
+export function intersectionHandler(whatever) {
+  const { intersected, node, elements } = whatever;
   const updatedEls = elements
     .filter((el) => el.id !== node.id) // remove self from parent
     .map((el) => {
@@ -89,7 +90,7 @@ export function onDragStopHandler({ node, elements, setElements, iframeId }) {
 
   const removeUp = overflows(node.id, iframeId);
   if (removeUp) {
-    console.log("TODO: MOVE UP LOGIC HERE");
+    console.log("TODO: MOVE UP LOGIC HERE", node);
     // const updatedEls = removeUpHandler({ node, elements });
     // setElements(updatedEls);
     // console.log(node);
