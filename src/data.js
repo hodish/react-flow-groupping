@@ -122,6 +122,7 @@ export const INITIAL_STATE = [
               data: { label: "Random Node" },
               position: { x: 200, y: 5 },
             },
+            { id: "enested1-2", source: "1-a", target: "2-a", animated: true },
           ]}
         />
       ),
